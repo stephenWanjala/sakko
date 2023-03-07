@@ -1,9 +1,8 @@
 from django.contrib import admin
 
-from .models import Sacco
+from . import models
 
-admin.site.register(Sacco)
-
-from .models import Farmer
-
-admin.site.register(Farmer)
+admin.site.register(models.Sacco)
+admin.site.register(models.Farmer)
+admin.site.register(models.Milk)
+admin.site.register(models.MilkStatus)

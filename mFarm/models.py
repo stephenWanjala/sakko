@@ -1,3 +1,5 @@
+from string import Template as tm
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -43,9 +45,14 @@ class Milk(models.Model):
     status = models.ForeignKey(MilkStatus, on_delete=models.CASCADE)
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+
     # date = models.DateField()
     # price
 
+    def __str__(self):
+        return tm('$farmer -> $status').substitute(farmer=self.farmer, quantity=self.status)
 
-class MilkCollection(models.Model):
-    dateCollected = models.CASCADE()
+
+# class MilkCollection(models.Model):
+#     dateCollected = models.DateTimeField(auto_now_add=True)
+#     # quantityCollected
