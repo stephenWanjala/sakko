@@ -1,5 +1,3 @@
-from string import Template as tm
-
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -31,14 +29,24 @@ class Farmer(models.Model):
 
 
 class MilkStatus(models.Model):
-    fresh = models.BooleanField(default=True)
-    spoilt = models.BooleanField(default=False)
+    FRESH = "fresh"
+    SPOILT = "spoilt"
+    MILK_STATUS_CHOICES = [
+        (FRESH, 'Fresh'),
+        (SPOILT, 'Spoilt'),
+
+    ]
+
+    status = models.CharField(
+        max_length=7,
+        choices=MILK_STATUS_CHOICES,
+        default=FRESH
+    )
+
+    # spoilt = models.BooleanField(default=False)
 
     def __str__(self):
-        if self.fresh:
-            return "Fresh"
-        else:
-            "Spoilt"
+        return self.status
 
 
 class Milk(models.Model):
@@ -50,8 +58,7 @@ class Milk(models.Model):
     # price
 
     def __str__(self):
-        return tm('$farmer -> $status').substitute(farmer=self.farmer, quantity=self.status)
-
+        return "{} litres of {} milk from {}".format(self.quantity, self.status, self.farmer)
 
 # class MilkCollection(models.Model):
 #     dateCollected = models.DateTimeField(auto_now_add=True)
