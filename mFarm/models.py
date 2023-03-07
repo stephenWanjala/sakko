@@ -14,7 +14,7 @@ class Sacco(models.Model):
 
 class Farmer(models.Model):
     name = models.CharField(max_length=50)
-    sacco = models.ForeignKey(Sacco, on_delete=models.SET_NULL(), null=True)
+    sacco = models.ForeignKey(Sacco, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
