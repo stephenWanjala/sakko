@@ -63,3 +63,9 @@ class Milk(models.Model):
 # class MilkCollection(models.Model):
 #     dateCollected = models.DateTimeField(auto_now_add=True)
 #     # quantityCollected
+
+# Todo("Milk collection")
+
+# TODO("Billing")
+
+# TODO("Delivery")
