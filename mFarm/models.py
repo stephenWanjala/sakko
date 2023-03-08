@@ -51,7 +51,7 @@ class MilkStatus(models.Model):
 class Milk(models.Model):
     status = models.ForeignKey(MilkStatus, on_delete=models.CASCADE)
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.FloatField()
 
     # date = models.DateField()
     # price
@@ -62,8 +62,9 @@ class Milk(models.Model):
 
 class MilkCollection(models.Model):
     dateCollected = models.DateTimeField(auto_now_add=True)
-    quantityCollected = models.DecimalField(max_digits=5, decimal_places=2)
-    saccoCollected = models.ForeignKey(Sacco, on_delete=models.CASCADE)
+    milk_collected = models.ForeignKey(Milk, on_delete=models.SET_NULL, null=True)
+    # quantityCollected = models.DecimalField(max_digits=5, decimal_places=2)
+    # saccoCollected = models.ForeignKey(Sacco, on_delete=models.CASCADE)
     farmerCollected = models.ForeignKey(Farmer, on_delete=models.CASCADE)
 
 
