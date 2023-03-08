@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -61,11 +60,15 @@ class Milk(models.Model):
         return "{} litres of {} milk from {}".format(self.quantity, self.status, self.farmer)
 
 
-class Billing(models.Model):
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
-    payment_period = models.DateField()
-    amount = models.FloatField()
-    quantity = models.FloatField()
+# class MilkCollection(models.Model):
+#     dateCollected = models.DateTimeField(auto_now_add=True)
+#     quantityCollected = models.DecimalField(max_digits=5, decimal_places=2)
+#     saccoCollected = models.ForeignKey(Sacco, on_delete=models.CASCADE)
+#     farmerCollected = models.ForeignKey(Farmer, on_delete=models.CASCADE)
+
+
+def __str__(self):
+    return self.dateCollected
 
 
 class MilkEvaluation(models.Model):
