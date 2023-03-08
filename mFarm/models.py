@@ -62,7 +62,7 @@ class Milk(models.Model):
 
 class MilkCollection(models.Model):
     dateCollected = models.DateTimeField(auto_now_add=True)
-    # quantityCollected = models.DecimalField(max_digits=5, decimal_places=2)
+    # quantityCollected = models.DecimalField(max_digits=5, decimal_places=2,default=90.78)
     # saccoCollected = models.ForeignKey(Sacco, on_delete=models.CASCADE)
     farmerCollected = models.ForeignKey(Farmer, on_delete=models.CASCADE)
 
