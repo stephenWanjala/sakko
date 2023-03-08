@@ -60,12 +60,26 @@ class Milk(models.Model):
     def __str__(self):
         return "{} litres of {} milk from {}".format(self.quantity, self.status, self.farmer)
 
-# class MilkCollection(models.Model):
-#     dateCollected = models.DateTimeField(auto_now_add=True)
-#     # quantityCollected
 
-# Todo("Milk collection")
+class Billing(models.Model):
+    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
+    payment_period = models.DateField()
+    amount = models.FloatField()
+    quantity = models.FloatField()
 
-# TODO("Billing")
 
-# TODO("Delivery")
+class MilkEvaluation(models.Model):
+    the_milk = models.ForeignKey(Milk, on_delete=models.CASCADE)
+    butter_fat = models.DecimalField(max_digits=5, decimal_places=2)
+    # protein measured in g/100ml
+    protein_content = models.DecimalField(decimal_places=2, max_digits=10)
+    quantity_supplied = models.DecimalField(decimal_places=2, max_digits=10)
+
+    def calculate_base_amount(self):
+        butter_fat = 20
+        protein = 50
+        quantity = 100
+        amount_total = (butter_fat * self.butter_fat) + (protein * self.protein_content) + (
+                quantity * self.quantity_supplied)
+        farmer = self.the_milk.farmer
+        return amount_total, farmer
