@@ -8,3 +8,6 @@ admin.site.register(models.Milk)
 admin.site.register(models.MilkStatus)
 admin.site.register(models.MilkEvaluation)
 admin.site.register(models.Billing)
+admin.site.register(models.MilkCollection)
+
+
