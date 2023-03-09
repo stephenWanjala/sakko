@@ -85,9 +85,8 @@ class MilkCollection(models.Model):
     evaluation = models.ForeignKey(MilkEvaluation, on_delete=models.CASCADE)
     farmerCollected = models.ForeignKey(Farmer, on_delete=models.CASCADE)
 
-
-def __str__(self):
-    return self.dateCollected
+    def __str__(self):
+        return "Milk Collection from {}".format(self.farmerCollected.name)
 
 
 class Billing(models.Model):
