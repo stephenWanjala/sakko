@@ -60,10 +60,29 @@ class Milk(models.Model):
         return "{} litres of {} milk from {}".format(self.quantity, self.status, self.farmer)
 
 
+class MilkEvaluation(models.Model):
+    the_milk = models.ForeignKey(Milk, on_delete=models.CASCADE)
+    butter_fat = models.FloatField()
+    # protein measured in g/100ml
+    protein_content = models.FloatField()
+    quantity_supplied = models.FloatField()
+    gross_price = models.FloatField()
+
+    def calculate_base_amount(self):
+        butter_fat = 20.0
+        protein = 50.0
+        quantity = 100.0
+        amount_total = (butter_fat * self.butter_fat) + (protein * self.protein_content) + (
+                quantity * self.quantity_supplied)
+        return amount_total
+
+    def __str__(self):
+        return "{} Milk Evaluation".format(self.the_milk.farmer)
+
+
 class MilkCollection(models.Model):
     dateCollected = models.DateTimeField(auto_now_add=True)
-    # quantityCollected = models.DecimalField(max_digits=5, decimal_places=2,default=90.78)
-    # saccoCollected = models.ForeignKey(Sacco, on_delete=models.CASCADE)
+    evaluation = models.ForeignKey(MilkEvaluation, on_delete=models.CASCADE)
     farmerCollected = models.ForeignKey(Farmer, on_delete=models.CASCADE)
 
 
@@ -77,19 +96,5 @@ class Billing(models.Model):
     amount = models.FloatField()
     quantity = models.FloatField()
 
-
-class MilkEvaluation(models.Model):
-    the_milk = models.ForeignKey(Milk, on_delete=models.CASCADE)
-    butter_fat = models.DecimalField(max_digits=5, decimal_places=2)
-    # protein measured in g/100ml
-    protein_content = models.DecimalField(decimal_places=2, max_digits=10)
-    quantity_supplied = models.DecimalField(decimal_places=2, max_digits=10)
-
-    def calculate_base_amount(self):
-        butter_fat = 20
-        protein = 50
-        quantity = 100
-        amount_total = (butter_fat * self.butter_fat) + (protein * self.protein_content) + (
-                quantity * self.quantity_supplied)
-        farmer = self.the_milk.farmer
-        return amount_total, farmer
+    def __str__(self):
+        return "{} Billing Information".format(self.farmer.name)
