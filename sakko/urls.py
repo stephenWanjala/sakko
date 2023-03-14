@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+admin.site.site_header = 'Sacco Milk Procurement'  #Customize admin panel
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mFarm.urls')),
