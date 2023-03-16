@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
@@ -18,11 +19,11 @@ class Farmer(models.Model):
     # TODO("farmer to be user)
     name = models.CharField(max_length=50)
     sacco = models.ForeignKey(Sacco, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=50)
+    phone = PhoneNumberField(region="KE")
     email = models.EmailField(max_length=50)
     address = models.CharField(max_length=50)
 
-    # TODO("email & phone validation)
+
     def __str__(self):
         return self.name
 
