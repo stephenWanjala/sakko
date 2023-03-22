@@ -5,11 +5,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class Sacco(models.Model):
     name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+    phone = PhoneNumberField(region="KE")
+    email = models.EmailField(max_length=50)
     location = models.CharField(max_length=50)
-
-    # TODO("email & phone validation")
 
     def __str__(self):
         return self.name
