@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mFarm.urls')),
     path("api/", include('mFarm.api.urls')),
+
 ]

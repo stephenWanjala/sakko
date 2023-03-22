@@ -1,7 +1,7 @@
-# Let's create a html template for the user registration form
-# This form uses Bootstrap and Django crispy-forms for some added CSS.
+<!--Let's create a html template for the user registration form-->
+<!--This form uses Bootstrap and Django crispy-forms for some added CSS.-->
 
-{% extends "main/header.html" %}
+{% extends "mFarm/home.html" %}
 
 {% block content %}
 
@@ -12,10 +12,9 @@
 	<h1>Register</h1>
 	<form method="POST">
 		{% csrf_token %}
-		{{ register_form|crispy }}
 		<button class="btn btn-primary" type="submit">Register</button>
 	</form>
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
 </div>
 
-{% end-block %}
+{% endblock %}

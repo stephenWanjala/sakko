@@ -1,0 +1,23 @@
+<!--The views function we created automatically logins in a user upon account creation-->
+<!--But we need our user to have the ability to freely login, so-->
+<!--we need a login template, URL, and views function.-->
+<!--Let's create the login form-->
+
+{% extends "mFarm/home.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!--Login-->
+<div class="container py-5">
+  <h1>Login</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ crispy_forms_tags }}
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+  <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+</div>
+
+{% endblock %}

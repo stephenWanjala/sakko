@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 
     'mFarm.apps.MfarmConfig',
     "phonenumber_field",
     "rest_framework",
     'rest_framework_simplejwt',
 ]
-
+CRISPY_TEMPLATE_PACK = 'uni_form'
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # # or allow read-only access for unauthenticated users.
@@ -114,8 +115,7 @@ ROOT_URLCONF = 'sakko.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
