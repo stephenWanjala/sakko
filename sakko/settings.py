@@ -37,14 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    'crispy_forms',  # add crispy_forms to apps
 
     'mFarm.apps.MfarmConfig',
     "phonenumber_field",
     "rest_framework",
     'rest_framework_simplejwt',
 ]
-CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'uni-form'  # add the bootstrap template pack
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # add the email backend
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # # or allow read-only access for unauthenticated users.

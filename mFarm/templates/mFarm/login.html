@@ -3,7 +3,7 @@
 <!--we need a login template, URL, and views function.-->
 <!--Let's create the login form-->
 
-{% extends "mFarm/home.html" %}
+{% extends "mFarm/header.html" %}
 
 {% block content %}
 
@@ -14,7 +14,6 @@
   <h1>Login</h1>
   <form method="POST">
     {% csrf_token %}
-    {{ crispy_forms_tags }}
     <button class="btn btn-primary" type="submit">Login</button>
   </form>
   <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>

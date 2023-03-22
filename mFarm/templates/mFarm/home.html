@@ -1,7 +1,9 @@
+<p>Hello Milk Farmer!</p>
+
 {% include 'main.html' %}
 {% block content %}
     {% include 'navbar.html' %}
-    <h1>Home</h1>
+    <h1> </h1>
     {% for evaluation in milk_evaluation %}
         <p>Farmer->{{ evaluation.the_milk.farmer.name }}</p>
     <p>Quantity->{{ evaluation.quantity_supplied }}</p>

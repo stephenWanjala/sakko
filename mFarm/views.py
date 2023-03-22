@@ -46,10 +46,14 @@ def login_request(request):
     return render(request=request, template_name="mFarm/login.html", context={"login_form": form})
 
 
-def logout_request(request):   # add a logout function
+def logout_request(request):  # add a logout function
     logout(request)
     messages.info(request, "You have successfully logged out.")
     return redirect("main:homepage")
+
+
+def homepage(request):
+    return render(request=request, template_name='mFarm/home.html')
 
 
 def index(request):
