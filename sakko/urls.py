@@ -23,5 +23,5 @@ admin.site.index_title = 'Sacco Milk Procurement'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mFarm.urls')),
-    path("api/", include('mFarm.api.urls'))
+    path("api/", include('mFarm.api.urls')),
 ]
