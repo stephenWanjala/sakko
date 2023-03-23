@@ -8,13 +8,14 @@
 {% load crispy_forms_tags %}
 
 <!--Register-->
-<div class="container py-5">
+<div class="container py-5" xmlns="http://www.w3.org/1999/html">
 	<h1>Register</h1>
 	<form method="POST">
 		{% csrf_token %}
-		<button class="btn btn-primary" type="submit">Register</button>
+		{{register_form}}
+	</br> </br><button class="btn btn-primary" type="submit">Register</br></button>
 	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+	<p class="text-center"></br>If you already have an account, <a href="/login">login</a> instead.</p>
 </div>
 
 {% endblock %}

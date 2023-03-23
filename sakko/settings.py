@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     'rest_framework_simplejwt',
 ]
-CRISPY_TEMPLATE_PACK = 'uni-form'  # add the bootstrap template pack
+CRISPY_TEMPLATE_PACK = 'uni_form'  # add the bootstrap template pack
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # add the email backend
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
