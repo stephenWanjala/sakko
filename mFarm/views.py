@@ -21,7 +21,7 @@ def register_request(request):
             user = form.save()  # the form information is saved under a user,
             login(request, user)  # the user is logged in,
             messages.success(request, "Registration successful.")  # and the user is redirected to the
-            return redirect("mFarm:homepage")  # homepage showing a success message
+            return redirect("mFarm:home")  # homepage showing a success message
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render(request=request, template_name="mFarm/register.html", context={"register_form": form})
@@ -37,7 +37,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("mFarm:homepage")
+                return redirect("mFarm:home")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
