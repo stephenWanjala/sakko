@@ -1,12 +1,9 @@
-# Let's begin user authentication
-# Create the register form
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-# Let's create our forms
+# Create your forms here.
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)

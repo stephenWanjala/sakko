@@ -1,8 +1,3 @@
-<!--The views function we created automatically logins in a user upon account creation-->
-<!--But we need our user to have the ability to freely login, so-->
-<!--we need a login template, URL, and views function.-->
-<!--Let's create the login form-->
-
 {% extends "mFarm/header.html" %}
 
 {% block content %}
@@ -14,7 +9,7 @@
   <h1>Login</h1>
   <form method="POST">
     {% csrf_token %}
-    {{login_form}}
+    {{ login_form }}
     <button class="btn btn-primary" type="submit">Login</button>
   </form>
   <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
