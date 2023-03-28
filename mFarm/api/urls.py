@@ -2,17 +2,18 @@ from django.urls import path
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
 from . import views
-from .views import LogoutView
+from .views import LogoutView, ChangePasswordView, UpdateProfileView
 
 urlpatterns = [
     path("", views.apiRoutes),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path("farmers/", views.getFarmers),
     path("sacco", views.createSaco),
     path("saccos", views.getSacco),
     path("farmer/", views.addFarmer),
-    path('logout/', LogoutView.as_view(), name='auth_logout'),
-
+    path('change_password/<int:pk>/', ChangePasswordView.as_view(), name='api_change_password'),
+    path('update_profile/<int:pk>/', UpdateProfileView.as_view(), name='api_update_profile'),
+    path('logout/', LogoutView.as_view(), name='api_logout'),
 
 ]

@@ -1,22 +1,22 @@
 from django.contrib.auth.models import User
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer
+from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer, ChangePasswordSerializer, \
+    UpdateUserSerializer
 from mFarm.models import Farmer, Sacco
 
 
 @api_view(http_method_names=['GET'])
 def apiRoutes(request):
     routes = [
-        "api/token",
-        "api/token/refresh",
-        "api/signup",
         "api/login",
+        "api/login/refresh",
+        "api/signup",
         "api/farmers",
         "api/farmer<pk:str>"
     ]
@@ -117,3 +117,15 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class ChangePasswordView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ChangePasswordSerializer
+
+
+class UpdateProfileView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UpdateUserSerializer
