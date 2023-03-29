@@ -28,6 +28,22 @@ class UserManager(BaseUserManager):
 
         return user
 
+    def create_user(self, name, email, phone, password, sacco, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        if not sacco and not extra_fields.get('is_superuser'):
+            raise ValueError('The sacco field must be set')
+        user = self.model(
+            name=name,
+            email=self.normalize_email(email),
+            phone=phone,
+            sacco=sacco,
+            **extra_fields
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
 
 class Farmer(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -42,6 +58,11 @@ class Farmer(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["phone", "name"]
     objects = UserManager()
+
+    def save(self, *args, **kwargs):
+        if self.is_superuser:
+            self.sacco = None
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
