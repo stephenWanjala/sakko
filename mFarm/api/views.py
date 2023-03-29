@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
@@ -11,7 +11,7 @@ from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer,
     UpdateUserSerializer, RegisterSerializer
 from mFarm.models import Farmer, Sacco
 
-
+User = get_user_model()
 @api_view(http_method_names=['GET'])
 def apiRoutes(request):
     routes = [
