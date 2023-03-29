@@ -12,7 +12,7 @@ User = get_user_model()
 class SaccoSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Sacco
-        fields = ("name", "phone", "email")
+        fields = ("name", "phone", "email", "location")
 
 
 class FarmerSerializer(FlexFieldsModelSerializer):

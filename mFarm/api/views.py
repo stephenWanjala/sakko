@@ -12,13 +12,17 @@ from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer,
 from mFarm.models import Farmer, Sacco
 
 User = get_user_model()
+
+
 @api_view(http_method_names=['GET'])
 def apiRoutes(request):
     routes = [
         "api/login",
         "api/login/refresh",
-        "api/signup",
+        "api/register",
         "api/farmers",
+        "api/saccos",
+        "api/saccos/<str:location>",
         "api/farmer<pk:str>"
     ]
     return Response(data=routes)
@@ -28,8 +32,24 @@ def apiRoutes(request):
 # @login_required(login_url='index')
 @api_view(http_method_names=['GET'])
 def getFarmers(request):
-    farmers = Farmer.objects.all()
+    farmers = Farmer.objects.all().filter(is_superuser=False)
     serializer = FarmerSerializer(farmers, many=True)
+    return Response(data=serializer.data)
+
+
+# get all sacco
+@api_view(http_method_names=['GET'])
+def getSaccos(request):
+    saccos = Sacco.objects.all()
+    serializer = SaccoSerializer(saccos, many=True)
+    return Response(data=serializer.data)
+
+
+# sacco in the location
+@api_view(http_method_names=['GET'])
+def getSaccoInLocation(request, location):
+    saccos = Sacco.objects.all().filter(location=location)
+    serializer = SaccoSerializer(saccos, many=True)
     return Response(data=serializer.data)
 
 
