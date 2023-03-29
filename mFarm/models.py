@@ -1,3 +1,6 @@
+from uuid import uuid4
+
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -13,13 +16,32 @@ class Sacco(models.Model):
         return self.name
 
 
-class Farmer(models.Model):
-    # TODO("farmer to be user)
+class UserManager(BaseUserManager):
+    def create_superuser(self, name, email, phone, password):
+        user = self.model(email=self.normalize_email(email))
+        user.phone = phone
+        user.name = name
+        user.set_password(password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self.db)
+
+        return user
+
+
+class Farmer(AbstractBaseUser, PermissionsMixin):
+    id = models.UUIDField(default=uuid4, primary_key=True)
     name = models.CharField(max_length=50)
-    sacco = models.ForeignKey(Sacco, on_delete=models.CASCADE)
+    sacco = models.ForeignKey(Sacco, on_delete=models.CASCADE, null=True)
     phone = PhoneNumberField(region="KE")
-    email = models.EmailField(max_length=50)
+    email = models.EmailField(max_length=50, unique=True)
     address = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["phone", "name"]
+    objects = UserManager()
 
     def __str__(self):
         return self.name

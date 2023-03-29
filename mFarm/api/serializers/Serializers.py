@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import serializers
@@ -6,17 +6,20 @@ from rest_framework.validators import UniqueValidator
 
 from mFarm.models import Farmer, Sacco
 
+User = get_user_model()
+
 
 class SaccoSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Sacco
-        fields = '__all__'
+        fields = ("name", "phone", "email")
 
 
 class FarmerSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Farmer
-        fields = ("name", "phone", "email", "address","sacco")
+        depth = 1
+        fields = ("name", "phone", "email", "address", "sacco")
         expandable_fields = {
             'sacco': (SaccoSerializer,)
         }
@@ -33,7 +36,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name')
+        fields = ('name', 'email', 'phone', 'address', 'sacco', 'password', 'password2',)
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True}
@@ -47,10 +50,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data['username'],
+            name=validated_data['name'],
+            phone=validated_data['phone'],
             email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name']
+            address=validated_data['address'],
+            sacco=validated_data['sacco']
         )
 
         user.set_password(validated_data['password'])
