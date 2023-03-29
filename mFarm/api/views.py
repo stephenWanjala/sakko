@@ -1,13 +1,14 @@
 from django.contrib.auth.models import User
+from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer, ChangePasswordSerializer, \
-    UpdateUserSerializer
+    UpdateUserSerializer, RegisterSerializer
 from mFarm.models import Farmer, Sacco
 
 
@@ -30,6 +31,12 @@ def getFarmers(request):
     farmers = Farmer.objects.all()
     serializer = FarmerSerializer(farmers, many=True)
     return Response(data=serializer.data)
+
+
+class UserSerializer(FlexFieldsModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
 
 
 # add a new farmer
@@ -86,22 +93,27 @@ def getSacco(request):
     return Response(data=serializer.data)
 
 
-# signup endpoint
-@api_view(http_method_names=['POST'])
-def signup(request):
-    user = User.objects.create_user(username=request.data['username'], password=request.data['password'])
-    user.save()
-    return Response(data="User created successfully")
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
+
+
+# @api_view(http_method_names=['POST'])
+# def signup(request):
+#     user = User.objects.create_user(username=request.data['username'], password=request.data['password'])
+#     user.save()
+#     return Response(data="User created successfully")
 
 
 # login endpoint
-@api_view(http_method_names=['POST'])
-def login(request):
-    user = User.objects.get(username=request.data['username'])
-    if user.check_password(request.data['password']):
-        return Response(data="User logged in successfully", status=status.HTTP_200_OK)
-    else:
-        return Response(data="Invalid credentials", status=status.HTTP_401_UNAUTHORIZED)
+# @api_view(http_method_names=['POST'])
+# def login(request):
+#     user = User.objects.get(username=request.data['username'])
+#     if user.check_password(request.data['password']):
+#         return Response(data="User logged in successfully", status=status.HTTP_200_OK)
+#     else:
+#         return Response(data="Invalid credentials", status=status.HTTP_401_UNAUTHORIZED)
 
 
 # logout endpoint

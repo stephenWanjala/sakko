@@ -1,21 +1,25 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
+from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from mFarm.models import Farmer, Sacco
 
 
-class FarmerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Farmer
-        fields = '__all__'
-
-
-class SaccoSerializer(serializers.ModelSerializer):
+class SaccoSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Sacco
         fields = '__all__'
+
+
+class FarmerSerializer(FlexFieldsModelSerializer):
+    class Meta:
+        model = Farmer
+        fields = ("name", "phone", "email", "address","sacco")
+        expandable_fields = {
+            'sacco': (SaccoSerializer,)
+        }
 
 
 class RegisterSerializer(serializers.ModelSerializer):
