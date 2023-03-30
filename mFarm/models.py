@@ -110,12 +110,15 @@ class MilkEvaluation(models.Model):
     gross_price = models.FloatField()
 
     def calculate_base_amount(self):
-        butter_fat = 20.0
-        protein = 50.0
-        quantity = 100.0
-        amount_total = (butter_fat * self.butter_fat) + (protein * self.protein_content) + (
-                quantity * self.quantity_supplied)
-        return amount_total
+        if self.the_milk.status == 'fresh':
+            butter_fat = 20.0
+            protein = 50.0
+            quantity = 100.0
+            amount_total = (butter_fat * self.butter_fat) + (protein * self.protein_content) + (
+                    quantity * self.quantity_supplied)
+            return amount_total
+        else:
+            return 0.0
 
     def __str__(self):
         return "{} Milk Evaluation".format(self.the_milk.farmer)
