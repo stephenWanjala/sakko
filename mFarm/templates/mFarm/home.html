@@ -4,12 +4,12 @@
     <h1>Home</h1>
     {% for evaluation in milk_evaluation %}
         <p>Farmer->{{ evaluation.the_milk.farmer.name }}</p>
-    <p>Quantity->{{ evaluation.quantity_supplied }}</p>
-    <p>Milk status->{{ evaluation.the_milk.status }}</p>
-    <p>Gross amount->{{ evaluation.calculate_base_amount }}</p>
+        <p>Quantity->{{ evaluation.quantity_supplied }}</p>
+        <p>Milk status->{{ evaluation.the_milk.status }}</p>
+        <p>Gross amount->{{ evaluation.calculate_base_amount }}</p>
 
     {% endfor %}
-    <footer class="panel-footer text-center text-muted">
-        {% include 'footer.html' %}
-    </footer>
+
+    {% include 'footer.html' %}
+
 {% endblock %}
