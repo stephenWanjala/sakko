@@ -21,6 +21,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['address'] = user.address
         token['sacco'] = user.sacco
 
+
         return token
 
 
