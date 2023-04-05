@@ -1,12 +1,20 @@
+{% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>MFarm</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
-<body>
- {% block content %}
+<div class="container">
+    <body>
 
- {% endblock %}
-</body>
+    {% block content %}
+    {% endblock %}
+
+
+    </body>
+</div>
 </html>
