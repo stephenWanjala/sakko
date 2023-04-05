@@ -3,10 +3,25 @@ from django.contrib.auth.password_validation import validate_password
 from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from mFarm.models import Farmer, Sacco
 
 User = get_user_model()
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['email'] = user.email
+        token['phone'] = str(user.phone)
+        token['address'] = user.address
+        token['sacco'] = user.sacco
+
+        return token
 
 
 class SaccoSerializer(FlexFieldsModelSerializer):
