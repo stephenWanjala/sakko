@@ -1,7 +1,14 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand">MFarm</a>
-    <div class="d-flex" role="search">
+     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Library</li>
+  </ol>
+</nav>
+
+    <div class="d-flex">
+        <p class="text-center m-2">Hi, Welcome James</p>
       <button class="btn btn-outline-success" onclick="{% url 'api_logout' %}">Logout</button>
     </div>
   </div>

@@ -1,15 +1,35 @@
 {% include 'main.html' %}
 {% block content %}
     {% include 'navbar.html' %}
-    <h1>Home</h1>
-    {% for evaluation in milk_evaluation %}
-        <p>Farmer->{{ evaluation.the_milk.farmer.name }}</p>
-        <p>Quantity->{{ evaluation.quantity_supplied }}</p>
-        <p>Milk status->{{ evaluation.the_milk.status }}</p>
-        <p>Gross amount->{{ evaluation.calculate_base_amount }}</p>
+    <div class="container container-fluid">
 
-    {% endfor %}
-
+    <h1 class="m-5 text-center">Milk Collection status</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Farmer</th>
+      <th scope="col">Time</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Status</th>
+      <th scope="col">Gross Billing</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for evaluation in milk_evaluation %}
+    <tr>
+      <th scope="row">{{ evaluation.id }}</th >
+      <td>{{ evaluation.the_milk.farmer.name }}</td>
+      <td>{{ evaluation.the_milk.dateCollected }}</td>
+      <td>{{ evaluation.the_milk.quantity }}</td>
+      <td>{{ evaluation.the_milk.status}}</td>
+      <td>{{ evaluation.calculate_base_amount}}</td>
+    </tr>
+    <tr>
+        {% endfor %}
+  </tbody>
+</table>
+      </div>
 
     {% include 'footer.html' %}
 
