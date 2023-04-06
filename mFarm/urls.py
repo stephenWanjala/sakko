@@ -1,11 +1,9 @@
+
 from django.urls import path
+from .views import index
 from . import views
 
-app_name = "mFarm"
-
 urlpatterns = [
-    path("", views.homepage, name="homepage"),
-    path("register/", views.register_request, name="register"),
-    path("login/", views.login_request, name="login"),
-    path("logout/", views.logout_request, name="logout")
+    path('', index, name='index'),
+    path('home', views.home, name='home'),
 ]

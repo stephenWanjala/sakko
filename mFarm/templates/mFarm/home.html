@@ -1,35 +1,37 @@
-{% extends 'mFarm/header.html' %}
+{% include 'main.html' %}
+{% block content %}
+    {% include 'navbar.html' %}
+    <div class="container container-fluid">
 
-{% block content%}
+    <h1 class="m-5 text-center">Milk Collection status</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Farmer</th>
+      <th scope="col">Time</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Status</th>
+      <th scope="col">Gross Billing</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for evaluation in milk_evaluation %}
+    <tr>
+      <th scope="row">{{ evaluation.id }}</th >
+      <td>{{ evaluation.the_milk.farmer.name }}</td>
+      <td>{{ evaluation.the_milk.dateCollected }}</td>
+      <td>{{ evaluation.the_milk.quantity }}</td>
+      <td>{{ evaluation.the_milk.status}}</td>
+      <td>{{ evaluation.calculate_base_amount}}</td>
+    </tr>
+    <tr>
+        {% endfor %}
+  </tbody>
+</table>
+      </div>
 
-<h1>Hello Milk Farmer!</h1>
+    {% include 'footer.html' %}
 
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      {% if user.is_authenticated %}
-
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
-      </li>
-
-      {% else %}
-
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-
-      {% endif %}
-    </ul>
-  </div>
-</nav>
 
 {% endblock %}
