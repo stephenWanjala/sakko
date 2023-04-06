@@ -1,1 +1,8 @@
-<h1>Navbar</h1>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand">MFarm</a>
+    <div class="d-flex" role="search">
+      <button class="btn btn-outline-success" onclick="{% url 'api_logout' %}">Logout</button>
+    </div>
+  </div>
+</nav>

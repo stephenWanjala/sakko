@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>MFarm</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
-<body>
- {% block content %}
+<div class="container">
+    <body>
 
- {% endblock %}
-</body>
+    {% block content %}
+    {% endblock %}
+
+
+    </body>
+</div>
 </html>
