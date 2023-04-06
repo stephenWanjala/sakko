@@ -1,3 +1,4 @@
+import datetime
 from uuid import uuid4
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
@@ -94,7 +95,7 @@ class Milk(models.Model):
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
-    # date = models.DateField()
+    dateCollected = models.DateTimeField(auto_created=True,auto_now_add=True)
     # price
 
     def __str__(self):
@@ -106,16 +107,16 @@ class MilkEvaluation(models.Model):
     butter_fat = models.FloatField()
     # protein measured in g/100ml
     protein_content = models.FloatField()
-    quantity_supplied = models.FloatField()
-    gross_price = models.FloatField()
+    # quantity_supplied = models.FloatField()
+    # gross_price = models.FloatField()
 
     def calculate_base_amount(self):
-        if self.the_milk.status == 'fresh':
+        if self.the_milk.status.status == "fresh":
             butter_fat = 20.0
             protein = 50.0
             quantity = 100.0
             amount_total = (butter_fat * self.butter_fat) + (protein * self.protein_content) + (
-                    quantity * self.quantity_supplied)
+                    quantity * self.the_milk.quantity)
             return amount_total
         else:
             return 0.0
