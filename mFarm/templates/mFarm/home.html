@@ -1,13 +1,35 @@
-{% include 'main.html' %}
-{% block content %}
-    {% include 'navbar.html' %}
-    <h1>Home</h1>
-    {% for evaluation in milk_evaluation %}
-        <p>Farmer->{{ evaluation.the_milk.farmer.name }}</p>
-    <p>Quantity->{{ evaluation.quantity_supplied }}</p>
-    <p>Milk status->{{ evaluation.the_milk.status }}</p>
-    <p>Gross amount->{{ evaluation.calculate_base_amount }}</p>
+{% extends 'mFarm/header.html' %}
 
-    {% endfor %}
+{% block content%}
+
+<h1>Hello Milk Farmer!</h1>
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
 
 {% endblock %}

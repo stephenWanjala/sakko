@@ -37,13 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',  # add crispy_forms to apps
 
     'mFarm.apps.MfarmConfig',
     "phonenumber_field",
     "rest_framework",
     'rest_framework_simplejwt',
 ]
-
+CRISPY_TEMPLATE_PACK = 'uni_form'  # add the bootstrap template pack
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # add the email backend
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # # or allow read-only access for unauthenticated users.
@@ -114,8 +116,7 @@ ROOT_URLCONF = 'sakko.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
