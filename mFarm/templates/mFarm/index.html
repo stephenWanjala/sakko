@@ -8,28 +8,24 @@
   <title>MFarm ~Sacco Milk procurement System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-<!--    {% load static %}-->
+    {% load static %}
    {% load bootstrap5 %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
+    <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-<!--<link rel="apple-touch-icon" sizes="180x180" href=" {% static /apple-touch-icon.png">-->
-<!--<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">-->
-<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
-<!--<link rel="manifest" href="/site.webmanifest">-->
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href=" {% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href=" {% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href=" {% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href=" {%  static 'assets/css/style.css' %}" rel="stylesheet">
 
@@ -85,8 +81,8 @@
               <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="{% url 'home' %}" class="btn btn-outline-white">Get started</a></p>
             </div>
             <div class="col-lg-4 iphone-wrap">
-              <img src="{% static 'assets/img/phone_1.png' %}" alt="Image" class="phone-1" data-aos="fade-right">
-              <img src="{%  static 'assets/img/phone_2.png' %}" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
+              <img src="{% static 'assets/img/mfarmboy.png' %}" alt="Image" class="phone-1" data-aos="fade-right">
+              <img src="{%  static 'assets/img/mfarmcow.png' %}" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
             </div>
           </div>
         </div>
@@ -113,7 +109,7 @@
               <div class="wrap-icon icon-1">
                 <i class="bi bi-people"></i>
               </div>
-              <h3 class="mb-3">Easy Reach to Milk Saccos</h3>
+              <h3 class="mb-3">Easy Reach to Milk Sacco's</h3>
               <p>Farmers Register to Societies close to them .</p>
             </div>
           </div>
@@ -271,11 +267,11 @@
                 <div class="swiper-slide">
                   <div class="review text-center">
                     <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill muted"></i>
                     </p>
                     <h3>Awesome functionality!</h3>
                     <blockquote>
@@ -308,7 +304,7 @@
             <h2>Why Not Get The MFarm App?</h2>
           </div>
           <div class="col-md-5 text-center text-md-end">
-            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-apple"></i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-play-store"></i><span>Google play</span></a></p>
+            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bi bi-apple"></i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bi bi-google-play"></i></i><span>Google play</span></a></p>
           </div>
         </div>
       </div>
@@ -381,6 +377,7 @@
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
 
