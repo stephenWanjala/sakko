@@ -1,48 +1,22 @@
-from django.shortcuts import render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 # Create your views here.
-def homepage(request):
-    return render(request=request, template_name='mFarm/home.html')
+from .models import MilkEvaluation
 
 
-def register_request(request):
-    if request.method == "POST":
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            # user = form.save()
-            # login(request, user)
-            messages.success(request, "Registration successful.")
-            return redirect("mFarm:homepage")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
-    form = NewUserForm()
-    return render(request=request, template_name="mFarm/register.html", context={"register_form": form})
+def index(request):
+    if request.user.is_authenticated:
+        return redirect(to='home')
+    return render(request, 'mFarm/index.html')
 
 
-def login_request(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, "You are now logged in as {username}.")
-                return redirect("mFarm:homepage")
-            else:
-                messages.error(request, "Invalid username or password.")
-        else:
-            messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
-    return render(request=request, template_name="mFarm/login.html", context={"login_form": form})
-
-
-def logout_request(request):
-    logout(request)
-    messages.info(request, "You have successfully logged out.")
-    return redirect("mFarm:homepage")
+@login_required
+def home(request):
+    if request.user.is_authenticated:
+        evaluation = MilkEvaluation.objects.all()
+        context = {'milk_evaluation': evaluation, 'currentYear': datetime.now().year}
+        return render(request=request, template_name='mFarm/home.html', context=context)
+    return redirect(to='index')
