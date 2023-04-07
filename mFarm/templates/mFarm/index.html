@@ -8,12 +8,18 @@
   <title>MFarm ~Sacco Milk procurement System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-    {% load static %}
+<!--    {% load static %}-->
+   {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
+<!--<link rel="apple-touch-icon" sizes="180x180" href=" {% static /apple-touch-icon.png">-->
+<!--<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">-->
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<!--<link rel="manifest" href="/site.webmanifest">-->
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -373,9 +379,7 @@
 
   <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{%  static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
