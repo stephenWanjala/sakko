@@ -8,24 +8,27 @@
   <title>MFarm ~Sacco Milk procurement System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-    {% load static %}
-    {% load bootstrap_icons %}
+<!--    {% load static %}-->
+   {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
+<!--<link rel="apple-touch-icon" sizes="180x180" href=" {% static /apple-touch-icon.png">-->
+<!--<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">-->
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<!--<link rel="manifest" href="/site.webmanifest">-->
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-
 
   <!-- Vendor CSS Files -->
   <link href=" {% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href=" {% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
 
   <!-- Template Main CSS File -->
   <link href=" {%  static 'assets/css/style.css' %}" rel="stylesheet">
@@ -51,9 +54,7 @@
           
           <li><a href="">Contact Us</a></li>
         </ul>
-
-{#        <i class="bi mobile-nav-toggle">{% bs_icon 'list' %}</i>#}
-        <span class="bi mobile-nav-toggle">{% bs_icon 'list' %}</span>
+        <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
@@ -110,7 +111,7 @@
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
             <div class="feature-1 text-center">
               <div class="wrap-icon icon-1">
-                <span class="bi {% static 'people' %}"></span>
+                <i class="bi bi-people"></i>
               </div>
               <h3 class="mb-3">Easy Reach to Milk Saccos</h3>
               <p>Farmers Register to Societies close to them .</p>
@@ -119,7 +120,7 @@
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="feature-1 text-center">
               <div class="wrap-icon icon-1">
-                <span class="bi ">{% bs_icon 'brightness-high' %}</span>
+                <i class="bi bi-brightness-high"></i>
               </div>
               <h3 class="mb-3">Digital Whiteboard</h3>
               <p>No need of Paperwork's The application keeps your log data safe and organised.</p>
@@ -128,7 +129,7 @@
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="feature-1 text-center">
               <div class="wrap-icon icon-1">
-                <span class="bi ">{% bs_icon 'bar-chart' %}</span>
+                <i class="bi bi-bar-chart"></i>
               </div>
               <h3 class="mb-3">Design To Development</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
@@ -221,13 +222,12 @@
 
                 <div class="swiper-slide">
                   <div class="review text-center">
-
                     <p class="stars">
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %} </span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi  muted">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill muted"></span>
                     </p>
                     <h3>Excellent App!</h3>
                     <blockquote>
@@ -246,13 +246,12 @@
 
                 <div class="swiper-slide">
                   <div class="review text-center">
-
                     <p class="stars">
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi  muted">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill muted"></span>
                     </p>
                     <h3>This App is easy to use!</h3>
                     <blockquote>
@@ -272,11 +271,11 @@
                 <div class="swiper-slide">
                   <div class="review text-center">
                     <p class="stars">
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
-                      <span class="bi  muted">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill"></span>
+                      <span class="bi bi-star-fill muted"></span>
                     </p>
                     <h3>Awesome functionality!</h3>
                     <blockquote>
@@ -309,7 +308,7 @@
             <h2>Why Not Get The MFarm App?</h2>
           </div>
           <div class="col-md-5 text-center text-md-end">
-            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx "> {% bs_icon 'apple' %}</i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bx "> {% bs_icon 'google-play' %}</i><span>Google play</span></a></p>
+            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-apple"></i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-play-store"></i><span>Google play</span></a></p>
           </div>
         </div>
       </div>
@@ -326,10 +325,10 @@
           <p>At Milk Procurement Application, we believe that farmers are the backbone of our society,
              and we are committed to supporting them in every way possible. Our mission is to remove the exploitation of farmers by middlemen and create a fair and transparent milk procurement system. We have developed a mobile app that connects farmers directly to milk societies and processing companies, ensuring that they receive fair prices for their milk produce.</p>
           <p class="social">
-            <a href="#"> <span class="bi">{% bs_icon 'twitter' %}</span></a>
-            <a href="#"><span class="bi">{%  bs_icon 'facebook' %}</span></a>
-            <a href="#"><span class="bi">{% bs_icon 'instagram' %}</span></a>
-            <a href="#"><span class="bi">{% bs_icon 'linkedin' %}</span></a>
+            <a href="#"><span class="bi bi-twitter"></span></a>
+            <a href="#"><span class="bi bi-facebook"></span></a>
+            <a href="#"><span class="bi bi-instagram"></span></a>
+            <a href="#"><span class="bi bi-linkedin"></span></a>
           </p>
         </div>
         <div class="col-md-7 ms-auto">
@@ -376,11 +375,10 @@
     </div>
   </footer>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><span class="bi ">{% bs_icon 'arrow-up' %}</span></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
   <!-- Template Main JS File -->
