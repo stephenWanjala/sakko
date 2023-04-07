@@ -9,6 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
     {% load static %}
+    {% load bootstrap_icons %}
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
@@ -17,12 +18,15 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
+
+
   <!-- Vendor CSS Files -->
   <link href=" {% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href=" {% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
 
   <!-- Template Main CSS File -->
   <link href=" {%  static 'assets/css/style.css' %}" rel="stylesheet">
@@ -48,6 +52,7 @@
           
           <li><a href="">Contact Us</a></li>
         </ul>
+
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -216,12 +221,13 @@
 
                 <div class="swiper-slide">
                   <div class="review text-center">
+
                     <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi "></span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi  muted">{% bs_icon 'star-fill' %}</span>
                     </p>
                     <h3>Excellent App!</h3>
                     <blockquote>
@@ -240,12 +246,13 @@
 
                 <div class="swiper-slide">
                   <div class="review text-center">
+
                     <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi "></span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi  muted">{% bs_icon 'star-fill' %}</span>
                     </p>
                     <h3>This App is easy to use!</h3>
                     <blockquote>
@@ -265,11 +272,11 @@
                 <div class="swiper-slide">
                   <div class="review text-center">
                     <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi "></span>
+                      <span class="bi ">{% bs_icon 'star-fill' %}</span>
+                      <span class="bi  muted">{% bs_icon 'star-fill' %}</span>
                     </p>
                     <h3>Awesome functionality!</h3>
                     <blockquote>
@@ -302,7 +309,7 @@
             <h2>Why Not Get The MFarm App?</h2>
           </div>
           <div class="col-md-5 text-center text-md-end">
-            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-apple"></i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-play-store"></i><span>Google play</span></a></p>
+            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx "> {% bs_icon 'apple' %}</i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bx "> {% bs_icon 'play-store' %}</i><span>Google play</span></a></p>
           </div>
         </div>
       </div>
@@ -319,10 +326,10 @@
           <p>At Milk Procurement Application, we believe that farmers are the backbone of our society,
              and we are committed to supporting them in every way possible. Our mission is to remove the exploitation of farmers by middlemen and create a fair and transparent milk procurement system. We have developed a mobile app that connects farmers directly to milk societies and processing companies, ensuring that they receive fair prices for their milk produce.</p>
           <p class="social">
-            <a href="#"><span class="bi bi-twitter"></span></a>
-            <a href="#"><span class="bi bi-facebook"></span></a>
-            <a href="#"><span class="bi bi-instagram"></span></a>
-            <a href="#"><span class="bi bi-linkedin"></span></a>
+            <a href="#"> <span class="bi">{% bs_icon 'twitter' %}</span></a>
+            <a href="#"><span class="bi">{%  bs_icon 'facebook' %}</span></a>
+            <a href="#"><span class="bi">{% bs_icon 'instagram' %}</span></a>
+            <a href="#"><span class="bi">{% bs_icon 'linkedin' %}</span></a>
           </p>
         </div>
         <div class="col-md-7 ms-auto">

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "rest_framework",
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'django_bootstrap_icons'
 ]
 CRISPY_TEMPLATE_PACK = 'uni_form'  # add the bootstrap template pack
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # add the email backend
