@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
 ]
-
+CRISPY_TEMPLATE_PACK = 'uni_form'  # add the bootstrap template pack
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # add the email backend
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # # or allow read-only access for unauthenticated users.
@@ -124,8 +125,7 @@ ROOT_URLCONF = 'sakko.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
