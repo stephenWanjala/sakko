@@ -3,7 +3,6 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
@@ -27,16 +26,20 @@ def home(request):
 
 
 def loginPage(request):
-    form = UserCreationForm()
-
+    messages.info(request, 'You are not logged in')
+    if request.user.is_authenticated:
+        return redirect(to='home')
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
-            return redirect('home')
-        else:
-            messages.error(request, "An error Occurred During Registration")
-    context = {'form': form}
-    return render(request=request, template_name='mFarm/login.html',context=context)
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(email=email)
+            user = authenticate(request, username=user.username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(to='home')
+            else:
+                messages.info(request, 'Username OR password is incorrect')
+        except(User.DoesNotExist, User.MultipleObjectsReturned) as e:
+            messages.info(request, e)
+    return render(request, 'mFarm/login.html')

@@ -1,9 +1,6 @@
 {% include 'main.html' %}
-
 {% block content %}
 
- <div class="container w-50 text-center p-5 card  card-center mt-4">
-<div class="card-body">
     <!-- Pills navs -->
 <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
   <li class="nav-item" role="presentation">
@@ -24,19 +21,19 @@
       <div class="text-center mb-3">
         <p>Sign in with:</p>
         <button type="button" class="btn btn-link btn-floating mx-1">
-          <i class="bi bi-facebook"></i>
+          <i class="fab fa-facebook-f"></i>
         </button>
 
         <button type="button" class="btn btn-link btn-floating mx-1">
-          <i class="bi bi-google"></i>
+          <i class="fab fa-google"></i>
         </button>
 
         <button type="button" class="btn btn-link btn-floating mx-1">
-          <i class="bi bi-twitter"></i>
+          <i class="fab fa-twitter"></i>
         </button>
 
         <button type="button" class="btn btn-link btn-floating mx-1">
-          <i class="bi bi-github"></i>
+          <i class="fab fa-github"></i>
         </button>
       </div>
 
@@ -45,7 +42,7 @@
       <!-- Email input -->
       <div class="form-outline mb-4">
         <input type="email" id="loginName" class="form-control" />
-        <label class="form-label" for="loginName">Email</label>
+        <label class="form-label" for="loginName">Email or username</label>
       </div>
 
       <!-- Password input -->
@@ -75,7 +72,7 @@
 
       <!-- Register buttons -->
       <div class="text-center">
-        <p>Not a member? <a href="{% url 'register' %}">Register</a></p>
+        <p>Not a member? <a href="#!">Register</a></p>
       </div>
     </form>
   </div>
@@ -84,11 +81,11 @@
       <div class="text-center mb-3">
         <p>Sign up with:</p>
         <button type="button" class="btn btn-link btn-floating mx-1">
-          <i class="fab fa-facebook-f"></i>
+          <i class="bi bi-facebook-f"></i>
         </button>
 
         <button type="button" class="btn btn-link btn-floating mx-1">
-          <i class="fab fa-google"></i>
+          <i class="bi bi-google"></i>
         </button>
 
         <button type="button" class="btn btn-link btn-floating mx-1">
@@ -147,9 +144,4 @@
   </div>
 </div>
 <!-- Pills content -->
-
- </div>
-     </div>
-
-    {% include 'footer.html' %}
 {% endblock %}
