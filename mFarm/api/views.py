@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import status, generics
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -26,6 +26,12 @@ def apiRoutes(request):
         "api/farmer<pk:str>"
     ]
     return Response(data=routes)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def isUserExist(request):
+    return Response({'message': 'User is authenticated'}, status=status.HTTP_200_OK)
 
 
 #  get all farmers
@@ -81,6 +87,7 @@ def getFarmer(request, pk):
 
 
 @api_view(http_method_names=['POST'])
+@permission_classes([IsAuthenticated])
 def updateFarmer(request, pk):
     farmer = Farmer.objects.get(id=pk)
     serializer = FarmerSerializer(instance=farmer, data=request.data)
