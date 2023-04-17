@@ -2,76 +2,93 @@
 {% block content %}
 
     <div class="container w-50 text-center p-5 card  card-center mt-4">
-<div class="card-body">
-    <!-- Pills navs -->
-<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link " id="tab-login" data-mdb-toggle="pill" href="{% url 'login' %}" role="tab"
-      aria-controls="pills-login" aria-selected="false">Login</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active " id="tab-register" data-mdb-toggle="pill" href="{% url 'signup' %}" role="tab"
-        onclick="event.preventDefault(); if(window.location.href !== this.href) { window.location.href = this.href; }"
-      aria-controls="pills-register" aria-selected="true">Register</a>
-  </li>
-</ul>
-<!-- Pills navs -->
+        <div class="card-body">
+            <!-- Pills navs -->
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="tab-login" data-mdb-toggle="pill" href="{% url 'login' %}" role="tab"
+                       aria-controls="pills-login" aria-selected="false">Login</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active " id="tab-register" data-mdb-toggle="pill" href="{% url 'signup' %}"
+                       role="tab"
+                       onclick="event.preventDefault(); if(window.location.href !== this.href) { window.location.href = this.href; }"
+                       aria-controls="pills-register" aria-selected="true">Register</a>
+                </li>
+            </ul>
+            <!-- Pills navs -->
 
-<!-- Pills content -->
-<div class="tab-content">
+            <!-- Pills content -->
+            <div class="tab-content">
 
-  <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-    <form method="post">
+                <div class="tab-pane fade show active" id="pills-register" role="tabpanel"
+                     aria-labelledby="tab-register">
+                    <form method="post">
+
+                         <div class="form-outline mb-4">
+                              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option selected>Select Sacco</option>
+                                  {% for sacco in saccos %}
+
+                                      <option value="{{ sacco.id }}">{{ sacco }}</option>
+                                  {% endfor %}
+                        </select>
+                         </div>
+
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="registerName" class="form-control"/>
+                            <label class="form-label" for="registerName">Name</label>
+                        </div>
+
+                        <!-- Username input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="registerUsername" class="form-control" name="username"/>
+                            <label class="form-label" for="registerUsername">Username</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="registerEmail" class="form-control" name="email" required/>
+                            <label class="form-label" for="registerEmail">Email</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="registerPassword" class="form-control" name="password" required/>
+                            <label class="form-label" for="registerPassword">Password</label>
+                        </div>
+
+                        <!-- Repeat Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="registerRepeatPassword" class="form-control" name="password2"
+                                   required/>
+                            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                        </div>
 
 
-      <!-- Name input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerName" class="form-control" />
-        <label class="form-label" for="registerName">Name</label>
-      </div>
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                                   disabled
+                                   aria-describedby="registerCheckHelpText"/>
+                            <label class="form-check-label" for="registerCheck">
+                                I have read and agree to the terms
+                            </label>
+                        </div>
 
-      <!-- Username input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerUsername" class="form-control" name="username" />
-        <label class="form-label" for="registerUsername">Username</label>
-      </div>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                    </form>
 
-      <!-- Email input -->
-      <div class="form-outline mb-4">
-        <input type="email" id="registerEmail" class="form-control"  name="email" required/>
-        <label class="form-label" for="registerEmail">Email</label>
-      </div>
+                </div>
 
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <input type="password" id="registerPassword" class="form-control" name="password" required />
-        <label class="form-label" for="registerPassword">Password</label>
-      </div>
+            </div>
 
-      <!-- Repeat Password input -->
-      <div class="form-outline mb-4">
-        <input type="password" id="registerRepeatPassword" class="form-control" name="password2" required />
-        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-      </div>
-
-      <!-- Checkbox -->
-      <div class="form-check d-flex justify-content-center mb-4">
-        <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked disabled
-          aria-describedby="registerCheckHelpText" />
-        <label class="form-check-label" for="registerCheck">
-          I have read and agree to the terms
-        </label>
-      </div>
-
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-    </form>
-  </div>
-</div>
-<!-- Pills content -->
+            <!-- Pills content -->
+        </div>
     </div>
+    <div class="mt-5">
+        {% include 'footer.html' %}
     </div>
-   <div class="mt-5">
-    {% include 'footer.html' %}
-   </div>
 {% endblock %}

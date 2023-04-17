@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 
 from .forms.FarmerCreationForm import FarmerCreationForm
 # Create your views here.
-from .models import MilkEvaluation
+from .models import MilkEvaluation, Sacco
 
 
 def currentYear():
@@ -56,6 +56,7 @@ def logout_view(request):
 
 
 def signup(request):
+    saccos = Sacco.objects.all()
     if request.method == 'POST':
         form = FarmerCreationForm(request.POST)
         if form.is_valid():
@@ -64,5 +65,5 @@ def signup(request):
             return redirect('login')
     else:
         form = FarmerCreationForm()
-    context = {'form': form}
+    context = {'form': form, 'saccos': saccos}
     return render(request, 'mFarm/signUp.html', context)

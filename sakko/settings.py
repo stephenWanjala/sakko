@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'bootstrap5',
     "corsheaders",
 ]
-CRISPY_TEMPLATE_PACK = 'uni_form'  # add the bootstrap template pack
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # add the email backend
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
