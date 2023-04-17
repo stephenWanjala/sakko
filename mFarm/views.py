@@ -23,7 +23,7 @@ def index(request):
 @login_required(login_url='login')
 def home(request):
     if request.user.is_authenticated:
-        evaluation = MilkEvaluation.objects.all()
+        evaluation = MilkEvaluation.objects.all().filter(the_milk__farmer=request.user)
         context = {'milk_evaluation': evaluation, 'currentYear': datetime.now().year}
         return render(request=request, template_name='mFarm/home.html', context=context)
     return redirect(to='login')
