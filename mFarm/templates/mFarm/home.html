@@ -4,7 +4,7 @@
     <div class="container container-fluid">
 
     <h1 class="m-5 text-center">Milk Collection status</h1>
-    {% if milk_evaluation %}
+
         <table class="table">
   <thead>
     <tr>
@@ -16,6 +16,7 @@
       <th scope="col">Gross Billing</th>
     </tr>
   </thead>
+        {% if milk_evaluation %}
   <tbody>
 {% for evaluation in milk_evaluation %}
     <tr>

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
+from .forms.FarmerCreationForm import FarmerCreationForm
 # Create your views here.
 from .models import MilkEvaluation
 
@@ -52,3 +53,16 @@ def loginPage(request):
 def logout_view(request):
     logout(request)
     return redirect(to='index')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = FarmerCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been created! You are now able to log in')
+            return redirect('login')
+    else:
+        form = FarmerCreationForm()
+    context = {'form': form}
+    return render(request, 'mFarm/signUp.html', context)
