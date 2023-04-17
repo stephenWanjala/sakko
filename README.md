@@ -17,4 +17,4 @@ Specific Objectives
 
 ## Project Specification
 
-The Sacco Milk Procurement Application System will enable farmers to register with milk saccos and receive fair payment for their milk produce. In addition to the quantity of milk delivered, payment to milk farmers will also be processed based on the quality of milk delivered. This application will eliminate the need for middlemen and ensure that farmers receive fair payment for their milk produce.
+The Sacco Milk Procurement Application System will enable farmers to register with milk saccos and receive fair payment for their milk produce. In addition to the quantity of milk delivered, payment to milk farmers will also be processed based on the quality of milk delivered. This application will eliminate the need for middlemen and ensure that farmers receive fair payment for their milk produce. 

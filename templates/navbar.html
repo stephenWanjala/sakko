@@ -9,8 +9,8 @@
 
 
     <div class="d-flex">
-        <p class="text-center m-2">Hi, Welcome James</p>
-      <button class="btn btn-outline-success" onclick="{% url 'api_logout' %}">Logout</button>
+        <p class="text-center m-2">Hi, Welcome {{ request.user }}</p>
+      <button class="btn btn-outline-success" onclick="{% url 'logout' %}">Logout</button>
     </div>
   </div>
 </nav>
