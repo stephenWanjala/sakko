@@ -4,19 +4,13 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
 
-from .forms.FarmerCreationForm import FarmerCreationForm
 # Create your views here.
-from .models import MilkEvaluation, Sacco, Farmer
+from .models import MilkEvaluation, Sacco
 
 
-def currentYear():
-    return datetime.now().year
+
 
 
 def index(request):
@@ -102,8 +96,5 @@ def signup(request):
             messages.add_message(request, messages.ERROR, e)
             return redirect(to='signup')
     else:
-        form = FarmerCreationForm()
-    context = {'saccos': saccos, 'messages': messages.get_messages(request)}
+        context = {'saccos': saccos, 'messages': messages.get_messages(request)}
     return render(request, 'mFarm/signUp.html', context)
-
-
