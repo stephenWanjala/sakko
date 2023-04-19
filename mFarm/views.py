@@ -10,9 +10,6 @@ from django.shortcuts import render, redirect
 from .models import MilkEvaluation, Sacco
 
 
-
-
-
 def index(request):
     if request.user.is_authenticated:
         return redirect(to='home')
