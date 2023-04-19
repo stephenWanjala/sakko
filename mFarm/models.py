@@ -9,7 +9,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class Sacco(models.Model):
     name = models.CharField(max_length=50)
-    phone = PhoneNumberField(region="KE")
+    phone = PhoneNumberField(region="KE", null=True, blank=True)
     email = models.EmailField(max_length=50)
     location = models.CharField(max_length=50)
 
@@ -95,7 +95,8 @@ class Milk(models.Model):
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
-    dateCollected = models.DateTimeField(auto_created=True,auto_now_add=True)
+    dateCollected = models.DateTimeField(auto_created=True, auto_now_add=True)
+
     # price
 
     def __str__(self):
@@ -107,6 +108,7 @@ class MilkEvaluation(models.Model):
     butter_fat = models.FloatField()
     # protein measured in g/100ml
     protein_content = models.FloatField()
+
     # quantity_supplied = models.FloatField()
     # gross_price = models.FloatField()
 

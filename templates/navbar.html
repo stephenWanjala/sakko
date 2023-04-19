@@ -1,16 +1,11 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-      <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-controls="page"><a href="{% url 'index' %}">Home</a></li>
-    <li class="breadcrumb-item " ><a href="{% url 'index' %}">Library</a></li>
-  </ol>
-</nav>
+     <a class="navbar-brand" href="{% url 'home' %}">MFarm</a>
 
 
     <div class="d-flex">
         <p class="text-center m-2">Hi, Welcome {{ request.user }}</p>
-      <button class="btn btn-outline-success" onclick="{% url 'logout' %}">Logout</button>
+      <a class="btn btn-outline-success" href="{% url 'logout' %}">Logout</a>
     </div>
   </div>
 </nav>
