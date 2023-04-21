@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from reportlab.lib.enums import TA_CENTER
-from reportlab.platypus import Table, TableStyle
 
 # Create your views here.
 from .models import MilkEvaluation, Sacco, Milk
@@ -96,6 +95,7 @@ def signup(request):
     else:
         context = {'saccos': saccos, 'messages': messages.get_messages(request)}
     return render(request, 'mFarm/signUp.html', context)
+
 
 #
 # from io import BytesIO
@@ -270,7 +270,7 @@ from django.http import HttpResponse
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
 
@@ -290,15 +290,16 @@ def generate_receipt(request, milk_id):
     styles.add(ParagraphStyle(name='Center', alignment=TA_CENTER))
 
     # Define the data for the table
-    data = [['Farmer Name:', milk.farmer.name],
+    data = [["Milk Payment receipt   for " + milk.farmer.name],
+            ['Farmer Name:', milk.farmer.name],
             ['Address:', milk.farmer.address],
             ['Phone:', str(milk.farmer.phone)],
             ['Email:', milk.farmer.email],
             ['Date:', datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
             ['Quantity:', str(milk.quantity) + ' litres'],
             ['Status:', milk.status.status],
-            ['Butter Fat Content:', str(milk_evaluation.butter_fat)+"%"],
-            ['Protein Content:', str(milk_evaluation.protein_content)+"%"],
+            ['Butter Fat Content:', str(milk_evaluation.butter_fat) + "%"],
+            ['Protein Content:', str(milk_evaluation.protein_content) + "%"],
             ['Total Amount:', 'KES ' + str(milk_evaluation.calculate_base_amount())]]
 
     # Create the table and add the data
@@ -322,5 +323,7 @@ def generate_receipt(request, milk_id):
     # File response with the PDF content.
     buffer.seek(0)
     response = HttpResponse(buffer, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="milk_receipt.pdf"'
+    response[
+        'Content-Disposition'] = 'attachment; filename="' + milk.farmer.name + "'s Milk  Payment Receipt " + datetime.now().strftime(
+        '%Y-%m-%d %H:%M:%S') + '.pdf"'
     return response
