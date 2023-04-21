@@ -14,6 +14,7 @@
       <th scope="col">Quantity</th>
       <th scope="col">Status</th>
       <th scope="col">Gross Billing</th>
+      <th scope="col">Receipt</th>
     </tr>
   </thead>
         {% if milk_evaluation %}
@@ -26,6 +27,7 @@
       <td>{{ evaluation.the_milk.quantity }}</td>
       <td>{{ evaluation.the_milk.status}}</td>
       <td>{{ evaluation.calculate_base_amount}}</td>
+        <td><a  href="{% url 'milk_detail' evaluation.the_milk.id %}" class="btn btn-primary">Receipt</a></td>
     </tr>
     <tr>
         {% endfor %}

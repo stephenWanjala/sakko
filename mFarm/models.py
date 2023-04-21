@@ -108,9 +108,7 @@ class MilkEvaluation(models.Model):
     butter_fat = models.FloatField()
     # protein measured in g/100ml
     protein_content = models.FloatField()
-
-    # quantity_supplied = models.FloatField()
-    # gross_price = models.FloatField()
+    somevariable =0
 
     def calculate_base_amount(self):
         if self.the_milk.status.status == "fresh":

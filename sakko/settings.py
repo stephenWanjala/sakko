@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--=p7j&6wwe+_bq+=0!0h%gg1gb=6hf^k_84y0w663p1o^afw%w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -122,6 +122,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'sakko.urls'
 
 CORS_ORIGIN_ALLOW_ALL = True
+# ALLOWED_HOSTS = ['*']
 
 TEMPLATES = [
     {
