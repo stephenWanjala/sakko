@@ -19,9 +19,9 @@
   </thead>
         {% if milk_evaluation %}
   <tbody>
-{% for evaluation in milk_evaluation %}
+{% for  evaluation in milk_evaluation %}
     <tr>
-      <th scope="row">{{ evaluation.id }}</th >
+      <th scope="row">{{ forloop.counter }}</th >
       <td>{{ evaluation.the_milk.farmer.name }}</td>
       <td>{{ evaluation.the_milk.dateCollected }}</td>
       <td>{{ evaluation.the_milk.quantity }}</td>

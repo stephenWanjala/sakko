@@ -1,3 +1,4 @@
+import jwt
 from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
 from rest_flex_fields import FlexFieldsModelSerializer
@@ -6,11 +7,13 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import AuthenticationFailed
+from rest_framework_simplejwt.tokens import RefreshToken, Token
 
 from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer, ChangePasswordSerializer, \
     UpdateUserSerializer, RegisterSerializer, MilkEvaluationSerializer
 from mFarm.models import Farmer, Sacco, MilkEvaluation
+from sakko import settings
 
 User = get_user_model()
 
@@ -175,6 +178,19 @@ class UpdateProfileView(generics.UpdateAPIView):
     serializer_class = UpdateUserSerializer
 
 
+def get_user_id_from_token(token):
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+        user_id = payload['user_id']
+        return user_id
+    except jwt.ExpiredSignatureError:
+        raise AuthenticationFailed('Token has expired')
+    except jwt.InvalidTokenError:
+        raise AuthenticationFailed('Invalid token')
+    except KeyError:
+        raise AuthenticationFailed('Invalid payload')
+
+
 @api_view(["GET"])
 @csrf_exempt
 def milk_evaluations(request):
@@ -187,10 +203,10 @@ def milk_evaluations(request):
         if token:
             # Validate the token
             try:
-                user = User.objects.get(auth_token=token)
+                user_id = get_user_id_from_token(token)
             except User.DoesNotExist:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
-
+            user = User.objects.get(id=user_id)
             # If the token is valid, return the milk evaluations
             milkEvaluations = MilkEvaluation.objects.filter(the_milk__farmer=user)
             serializer = MilkEvaluationSerializer(milkEvaluations, many=True)
