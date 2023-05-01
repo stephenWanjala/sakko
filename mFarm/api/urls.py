@@ -15,6 +15,6 @@ urlpatterns = [
     path('change_password/<int:pk>/', ChangePasswordView.as_view(), name='api_change_password'),
     path('update_profile/<int:pk>/', UpdateProfileView.as_view(), name='api_update_profile'),
     path('logout/', LogoutView.as_view(), name='api_logout'),
-    path('milk_evaluation', views.farmerMilkEvaluation, name='milk_evaluation'),
+    path('milk_evaluation', views.milk_evaluations, name='milk_evaluation'),
 
 ]

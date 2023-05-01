@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.views.decorators.csrf import csrf_exempt
 from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import status, generics
 from rest_framework.decorators import api_view, permission_classes
@@ -174,18 +175,25 @@ class UpdateProfileView(generics.UpdateAPIView):
     serializer_class = UpdateUserSerializer
 
 
-from rest_framework.permissions import IsAuthenticated
+@api_view(["GET"])
+@csrf_exempt
+def milk_evaluations(request):
+    """
+    API endpoint for milk evaluations.
+    """
+    if request.method == "GET":
+        # Get the token from the request header
+        token = request.headers.get("Authorization")
+        if token:
+            # Validate the token
+            try:
+                user = User.objects.get(auth_token=token)
+            except User.DoesNotExist:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-
-@api_view(http_method_names=['POST'])
-# @permission_classes([IsAuthenticated])
-def farmerMilkEvaluation(request):
-    try:
-        evaluation = MilkEvaluation.objects.all().filter(the_milk__farmer__milk=request.user)
-        serializer = MilkEvaluationSerializer(evaluation, many=True)
-        if evaluation.exists():
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            # If the token is valid, return the milk evaluations
+            milkEvaluations = MilkEvaluation.objects.filter(the_milk__farmer=user)
+            serializer = MilkEvaluationSerializer(milkEvaluations, many=True)
+            return Response(serializer.data)
         else:
-            return Response(data="No milk evaluation found", status=status.HTTP_404_NOT_FOUND)
-    except Exception as e:
-        return Response(data=e.__cause__, status=status.HTTP_400_BAD_REQUEST)
+            return Response("No auth credentials provided", status=status.HTTP_401_UNAUTHORIZED)
