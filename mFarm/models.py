@@ -1,4 +1,3 @@
-import datetime
 from uuid import uuid4
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
@@ -108,7 +107,6 @@ class MilkEvaluation(models.Model):
     butter_fat = models.FloatField()
     # protein measured in g/100ml
     protein_content = models.FloatField()
-    somevariable =0
 
     def calculate_base_amount(self):
         if self.the_milk.status.status == "fresh":

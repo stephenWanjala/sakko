@@ -8,8 +8,8 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from mFarm.api.serializers.Serializers import FarmerSerializer, SaccoSerializer, ChangePasswordSerializer, \
-    UpdateUserSerializer, RegisterSerializer
-from mFarm.models import Farmer, Sacco
+    UpdateUserSerializer, RegisterSerializer, MilkEvaluationSerializer
+from mFarm.models import Farmer, Sacco, MilkEvaluation
 
 User = get_user_model()
 
@@ -23,7 +23,8 @@ def apiRoutes(request):
         "api/farmers",
         "api/saccos",
         "api/saccos/<str:location>",
-        "api/farmer<pk:str>"
+        "api/farmer<pk:str>",
+        "api/milk_evaluation",
     ]
     return Response(data=routes)
 
@@ -56,7 +57,10 @@ def getSaccos(request):
 def getSaccoInLocation(request, location):
     saccos = Sacco.objects.all().filter(location=location)
     serializer = SaccoSerializer(saccos, many=True)
-    return Response(data=serializer.data)
+    if saccos.exists():
+        return Response(data=serializer.data)
+    else:
+        return Response(data="No Saccos Found In The Location", status=status.HTTP_404_NOT_FOUND)
 
 
 class UserSerializer(FlexFieldsModelSerializer):
@@ -168,3 +172,20 @@ class UpdateProfileView(generics.UpdateAPIView):
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = UpdateUserSerializer
+
+
+from rest_framework.permissions import IsAuthenticated
+
+
+@api_view(http_method_names=['POST'])
+# @permission_classes([IsAuthenticated])
+def farmerMilkEvaluation(request):
+    try:
+        evaluation = MilkEvaluation.objects.all().filter(the_milk__farmer__milk=request.user)
+        serializer = MilkEvaluationSerializer(evaluation, many=True)
+        if evaluation.exists():
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(data="No milk evaluation found", status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response(data=e.__cause__, status=status.HTTP_400_BAD_REQUEST)

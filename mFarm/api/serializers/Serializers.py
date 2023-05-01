@@ -5,7 +5,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from mFarm.models import Farmer, Sacco
+from mFarm.models import Farmer, Sacco, MilkEvaluation
 
 User = get_user_model()
 
@@ -41,13 +41,20 @@ class FarmerSerializer(FlexFieldsModelSerializer):
         }
 
 
+class MilkEvaluationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MilkEvaluation
+        fields = '__all__'
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
 
-    password = serializers.CharField(write_only=True, required=True, validators=[validate_password], style={'input_type': 'password'})
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password],
+                                     style={'input_type': 'password'})
     password2 = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
 
     class Meta:
