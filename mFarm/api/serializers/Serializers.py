@@ -5,7 +5,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from mFarm.models import Farmer, Sacco, MilkEvaluation
+from mFarm.models import Farmer, Sacco, MilkEvaluation, Milk
 
 User = get_user_model()
 
@@ -41,9 +41,23 @@ class FarmerSerializer(FlexFieldsModelSerializer):
         }
 
 
+class MilkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Milk
+        depth =1
+        expandable_fields = {
+            'farmer': (FarmerSerializer,)
+        }
+        fields = ('id', 'status', 'farmer', 'quantity', 'dateCollected')
+
+
 class MilkEvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = MilkEvaluation
+        depth = 2
+        expandable_fields = {
+            'the_milk': (MilkSerializer,)
+        }
         fields = '__all__'
 
 
